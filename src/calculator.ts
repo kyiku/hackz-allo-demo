@@ -57,3 +57,18 @@ export function divide(a: number, b: number): number {
 export function double(n: number): number {
   return n * 2
 }
+
+/**
+ * n が偶数かどうかを判定する。
+ * @param n 判定対象の整数
+ * @returns n が偶数なら true、奇数なら false
+ * @throws n が有限の整数でない場合に Error をスローする。
+ * @example isEven(4) // => true
+ * @example isEven(3) // => false
+ */
+export function isEven(n: number): boolean {
+  if (!Number.isInteger(n)) {
+    throw new Error(`isEven requires an integer, but received: ${n}`)
+  }
+  return n % 2 === 0
+}

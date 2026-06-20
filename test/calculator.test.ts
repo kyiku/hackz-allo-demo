@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { add, calculate, divide, double, subtract } from '../src/calculator'
+import { add, calculate, divide, double, isEven, subtract } from '../src/calculator'
 
 describe('add', () => {
   it('add は2数を加算する', () => {
@@ -63,6 +63,38 @@ describe('double', () => {
 
   it('double(-3) は -6 を返す（負の数）', () => {
     expect(double(-3)).toBe(-6)
+  })
+})
+
+describe('isEven', () => {
+  // Issue #31 で必須の2ケース
+  it('isEven(4) は true を返す', () => {
+    expect(isEven(4)).toBe(true)
+  })
+
+  it('isEven(3) は false を返す', () => {
+    expect(isEven(3)).toBe(false)
+  })
+
+  // 境界・防壁ケース
+  it('isEven(0) は true を返す（ゼロは偶数）', () => {
+    expect(isEven(0)).toBe(true)
+  })
+
+  it('isEven(-2) は true を返す（負の偶数）', () => {
+    expect(isEven(-2)).toBe(true)
+  })
+
+  it('isEven(-3) は false を返す（負の奇数）', () => {
+    expect(isEven(-3)).toBe(false)
+  })
+
+  it('整数でない値を渡すと例外をスローする', () => {
+    expect(() => isEven(2.5)).toThrow()
+  })
+
+  it('NaN を渡すと例外をスローする', () => {
+    expect(() => isEven(Number.NaN)).toThrow()
   })
 })
 
