@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { add, calculate, divide, double, isEven, multiply, subtract } from '../src/calculator'
+import { add, calculate, clamp, divide, double, isEven, multiply, subtract } from '../src/calculator'
 
 describe('add', () => {
   it('add は2数を加算する', () => {
@@ -123,6 +123,43 @@ describe('isEven', () => {
 
   it('NaN を渡すと例外をスローする', () => {
     expect(() => isEven(Number.NaN)).toThrow()
+  })
+})
+
+describe('clamp', () => {
+  // Issue #35 で必須の2ケース
+  it('clamp(5, 0, 10) は範囲内の値5をそのまま返す', () => {
+    expect(clamp(5, 0, 10)).toBe(5)
+  })
+
+  it('clamp(-3, 0, 10) は下限0にクランプされて0を返す', () => {
+    expect(clamp(-3, 0, 10)).toBe(0)
+  })
+
+  // 境界・補助ケース
+  it('clamp(13, 0, 10) は上限10にクランプされて10を返す', () => {
+    expect(clamp(13, 0, 10)).toBe(10)
+  })
+
+  it('clamp(0, 0, 10) は下限ちょうどで0を返す', () => {
+    expect(clamp(0, 0, 10)).toBe(0)
+  })
+
+  it('clamp(10, 0, 10) は上限ちょうどで10を返す', () => {
+    expect(clamp(10, 0, 10)).toBe(10)
+  })
+
+  it('clamp(-5, -10, -1) は負の範囲でも正しく動作する', () => {
+    expect(clamp(-5, -10, -1)).toBe(-5)
+  })
+
+  // 防壁ケース
+  it('min > max の場合は例外をスローする', () => {
+    expect(() => clamp(5, 10, 0)).toThrow()
+  })
+
+  it('NaN を渡すと例外をスローする', () => {
+    expect(() => clamp(Number.NaN, 0, 10)).toThrow()
   })
 })
 
