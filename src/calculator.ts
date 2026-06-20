@@ -110,3 +110,19 @@ export function clamp(v: number, min: number, max: number): number {
   }
   return v
 }
+
+/**
+ * a と b のうち大きい方を返す。等しい場合はその値を返す。
+ * @param a 比較対象の値
+ * @param b 比較対象の値
+ * @returns a >= b なら a、そうでなければ b
+ * @throws いずれかが有限数でない場合に Error をスローする。
+ * @example max(3, 7) // => 7
+ * @example max(7, 3) // => 7
+ */
+export function max(a: number, b: number): number {
+  if (!Number.isFinite(a) || !Number.isFinite(b)) {
+    throw new Error(`max requires finite numbers, but received: a=${a}, b=${b}`)
+  }
+  return a >= b ? a : b
+}
