@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { add, calculate, clamp, divide, double, isEven, multiply, subtract } from '../src/calculator'
+import { add, calculate, clamp, divide, double, isEven, max, multiply, subtract } from '../src/calculator'
 
 describe('add', () => {
   it('add は2数を加算する', () => {
@@ -160,6 +160,39 @@ describe('clamp', () => {
 
   it('NaN を渡すと例外をスローする', () => {
     expect(() => clamp(Number.NaN, 0, 10)).toThrow()
+  })
+})
+
+describe('max', () => {
+  // Issue #33 で必須の2ケース
+  it('max(3, 7) は 7 を返す（第2引数が大きい場合）', () => {
+    expect(max(3, 7)).toBe(7)
+  })
+
+  it('max(7, 3) は 7 を返す（第1引数が大きい場合）', () => {
+    expect(max(7, 3)).toBe(7)
+  })
+
+  // 境界・補助ケース
+  it('max(5, 5) は 5 を返す（同値）', () => {
+    expect(max(5, 5)).toBe(5)
+  })
+
+  it('max(-2, -5) は -2 を返す（負の数同士）', () => {
+    expect(max(-2, -5)).toBe(-2)
+  })
+
+  it('max(-3, 4) は 4 を返す（負と正の混在）', () => {
+    expect(max(-3, 4)).toBe(4)
+  })
+
+  // 防壁ケース
+  it('NaN を渡すと例外をスローする', () => {
+    expect(() => max(Number.NaN, 1)).toThrow()
+  })
+
+  it('Infinity を渡すと例外をスローする', () => {
+    expect(() => max(1, Number.POSITIVE_INFINITY)).toThrow()
   })
 })
 
