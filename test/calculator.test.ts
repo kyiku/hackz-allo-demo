@@ -1,13 +1,39 @@
 import { describe, expect, it } from 'vitest'
 import { add, calculate, divide, subtract } from '../src/calculator'
 
-describe('calculator', () => {
+describe('add', () => {
   it('add は2数を加算する', () => {
     expect(add(2, 3)).toBe(5)
   })
+})
 
-  it('subtract は2数を減算する', () => {
+describe('subtract', () => {
+  it('subtract(5, 3) は 2 を返す', () => {
     expect(subtract(5, 3)).toBe(2)
+  })
+
+  it('subtract(3, 5) は -2 を返す（負の結果）', () => {
+    expect(subtract(3, 5)).toBe(-2)
+  })
+
+  it('subtract(0, 0) は 0 を返す', () => {
+    expect(subtract(0, 0)).toBe(0)
+  })
+
+  it('subtract(5, 0) は 5 を返す（ゼロの減算）', () => {
+    expect(subtract(5, 0)).toBe(5)
+  })
+
+  it('subtract(-5, -3) は -2 を返す（負の数同士）', () => {
+    expect(subtract(-5, -3)).toBe(-2)
+  })
+
+  it('subtract(-5, 3) は -8 を返す（負と正の混在）', () => {
+    expect(subtract(-5, 3)).toBe(-8)
+  })
+
+  it('subtract(5, 5) は 0 を返す（同値で0）', () => {
+    expect(subtract(5, 5)).toBe(0)
   })
 })
 
