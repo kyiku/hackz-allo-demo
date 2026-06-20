@@ -9,3 +9,14 @@ export function add(a: number, b: number): number {
 export function subtract(a: number, b: number): number {
   return a - b
 }
+
+/**
+ * a を b で割る。
+ * @throws {Error} b が 0 のとき 'division by zero' を投げる。
+ */
+export function divide(a: number, b: number): number {
+  if (b === 0) {
+    throw new Error('division by zero')
+  }
+  return a / b
+}
