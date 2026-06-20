@@ -10,6 +10,7 @@ export type BinaryOperation = (a: number, b: number) => number
 export const operations: Record<string, BinaryOperation> = {
   add: (a, b) => a + b,
   sub: (a, b) => a - b,
+  mul: (a, b) => a * b,
   div: (a, b) => {
     if (b === 0) {
       throw new Error('division by zero')
@@ -40,6 +41,15 @@ export function add(a: number, b: number): number {
 
 export function subtract(a: number, b: number): number {
   return calculate('sub', a, b)
+}
+
+/**
+ * a と b を乗算する。符号は通常の算術規則に従う。
+ * @example multiply(3, 4) // => 12
+ * @example multiply(-2, 3) // => -6
+ */
+export function multiply(a: number, b: number): number {
+  return calculate('mul', a, b)
 }
 
 /**

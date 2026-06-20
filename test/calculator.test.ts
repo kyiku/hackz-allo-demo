@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { add, calculate, divide, double, isEven, subtract } from '../src/calculator'
+import { add, calculate, divide, double, isEven, multiply, subtract } from '../src/calculator'
 
 describe('add', () => {
   it('add は2数を加算する', () => {
@@ -37,6 +37,30 @@ describe('subtract', () => {
   })
 })
 
+describe('multiply', () => {
+  // Issue #34 で必須の2ケース
+  it('multiply(3, 4) は 12 を返す', () => {
+    expect(multiply(3, 4)).toBe(12)
+  })
+
+  it('multiply(-2, 3) は -6 を返す（負の数で正しい符号）', () => {
+    expect(multiply(-2, 3)).toBe(-6)
+  })
+
+  // 境界・補助ケース
+  it('multiply(-2, -3) は 6 を返す（負同士は正）', () => {
+    expect(multiply(-2, -3)).toBe(6)
+  })
+
+  it('multiply(7, 0) は 0 を返す（ゼロ乗算）', () => {
+    expect(multiply(7, 0)).toBe(0)
+  })
+
+  it('multiply(1, 5) は 5 を返す（恒等元）', () => {
+    expect(multiply(1, 5)).toBe(5)
+  })
+})
+
 describe('calculate', () => {
   it("calculate('add', 2, 3) は 5 を返す", () => {
     expect(calculate('add', 2, 3)).toBe(5)
@@ -44,6 +68,10 @@ describe('calculate', () => {
 
   it("calculate('sub', 5, 3) は 2 を返す", () => {
     expect(calculate('sub', 5, 3)).toBe(2)
+  })
+
+  it("calculate('mul', 3, 4) は 12 を返す", () => {
+    expect(calculate('mul', 3, 4)).toBe(12)
   })
 
   it('未知の op を渡すと例外をスローする', () => {
