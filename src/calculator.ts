@@ -10,6 +10,12 @@ export type BinaryOperation = (a: number, b: number) => number
 export const operations: Record<string, BinaryOperation> = {
   add: (a, b) => a + b,
   sub: (a, b) => a - b,
+  div: (a, b) => {
+    if (b === 0) {
+      throw new Error('division by zero')
+    }
+    return a / b
+  },
 }
 
 /** サポートする演算種別 */
@@ -34,4 +40,12 @@ export function add(a: number, b: number): number {
 
 export function subtract(a: number, b: number): number {
   return calculate('sub', a, b)
+}
+
+/**
+ * a を b で除算する。
+ * @throws b が 0 のとき 'division by zero' を含むメッセージの Error をスローする。
+ */
+export function divide(a: number, b: number): number {
+  return calculate('div', a, b)
 }
