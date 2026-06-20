@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { add, subtract } from '../src/calculator'
+import { add, divide, subtract } from '../src/calculator'
 
 describe('calculator', () => {
   it('add は2数を加算する', () => {
@@ -8,5 +8,19 @@ describe('calculator', () => {
 
   it('subtract は2数を減算する', () => {
     expect(subtract(5, 3)).toBe(2)
+  })
+
+  describe('divide', () => {
+    it('divide(6, 3) が 2 を返す', () => {
+      expect(divide(6, 3)).toBe(2)
+    })
+
+    it('b が 0 のとき例外を投げる', () => {
+      expect(() => divide(1, 0)).toThrow()
+    })
+
+    it('0除算時の例外メッセージに division by zero を含む', () => {
+      expect(() => divide(1, 0)).toThrow(/division by zero/)
+    })
   })
 })
