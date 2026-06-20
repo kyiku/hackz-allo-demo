@@ -49,3 +49,11 @@ export function subtract(a: number, b: number): number {
 export function divide(a: number, b: number): number {
   return calculate('div', a, b)
 }
+
+/**
+ * n の2倍を返す。
+ * @example double(4) // => 8
+ */
+export function double(n: number): number {
+  return n * 2
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { add, calculate, divide, subtract } from '../src/calculator'
+import { add, calculate, divide, double, subtract } from '../src/calculator'
 
 describe('add', () => {
   it('add は2数を加算する', () => {
@@ -49,6 +49,20 @@ describe('calculate', () => {
   it('未知の op を渡すと例外をスローする', () => {
     // @ts-expect-error 未知の op を意図的に渡す
     expect(() => calculate('unknown', 1, 2)).toThrow()
+  })
+})
+
+describe('double', () => {
+  it('double(4) は 8 を返す', () => {
+    expect(double(4)).toBe(8)
+  })
+
+  it('double(0) は 0 を返す', () => {
+    expect(double(0)).toBe(0)
+  })
+
+  it('double(-3) は -6 を返す（負の数）', () => {
+    expect(double(-3)).toBe(-6)
   })
 })
 
