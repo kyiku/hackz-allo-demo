@@ -82,3 +82,31 @@ export function isEven(n: number): boolean {
   }
   return n % 2 === 0
 }
+
+/**
+ * v を [min, max] の範囲に収める（クランプする）。
+ * v が範囲内ならそのまま、下限未満なら min、上限超過なら max を返す。
+ * @param v クランプ対象の値
+ * @param min 下限（含む）
+ * @param max 上限（含む）
+ * @returns min <= 結果 <= max を満たす値
+ * @throws いずれかが有限数でない場合、または min > max の場合に Error をスローする。
+ * @example clamp(5, 0, 10) // => 5
+ * @example clamp(-3, 0, 10) // => 0
+ * @example clamp(13, 0, 10) // => 10
+ */
+export function clamp(v: number, min: number, max: number): number {
+  if (!Number.isFinite(v) || !Number.isFinite(min) || !Number.isFinite(max)) {
+    throw new Error(`clamp requires finite numbers, but received: v=${v}, min=${min}, max=${max}`)
+  }
+  if (min > max) {
+    throw new Error(`clamp requires min <= max, but received: min=${min}, max=${max}`)
+  }
+  if (v < min) {
+    return min
+  }
+  if (v > max) {
+    return max
+  }
+  return v
+}
