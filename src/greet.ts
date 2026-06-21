@@ -1,9 +1,9 @@
 /**
- * 名前を受け取り、あいさつ文字列を返す。
+ * 名前を受け取り、あいさつ文字列を返す（実装サンプル）。
  *
- * TODO(#issue): まだ未実装。`greet('Claude')` が `'Hello, Claude!'` を
- * 返すように実装してください（test/greet.test.ts が通れば完了）。
+ * 各 Issue（敵）は、この greet と同じスタイルで
+ * `src/<name>.ts` に実装し、`test/<name>.test.ts` に vitest のテストを書きます。
  */
 export function greet(name: string): string {
-  return ''
+  return `Hello, ${name}!`
 }
