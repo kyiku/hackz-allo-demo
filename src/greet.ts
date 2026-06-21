@@ -1,13 +1,9 @@
 /**
- * 与えられた名前に対する挨拶文を返す。
+ * 名前を受け取り、あいさつ文字列を返す。
  *
- * @param name 挨拶の対象となる名前（空文字も許容する）
- * @returns `Hello, {name}!` 形式の挨拶文
- *
- * @example
- * greet('Sora') // => 'Hello, Sora!'
- * greet('')     // => 'Hello, !'
+ * TODO(#issue): まだ未実装。`greet('Claude')` が `'Hello, Claude!'` を
+ * 返すように実装してください（test/greet.test.ts が通れば完了）。
  */
 export function greet(name: string): string {
-  return `Hello, ${name}!`
+  return ''
 }

@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { greet } from '../src/greet'
 
 describe('greet', () => {
-  it("greet('Sora') は 'Hello, Sora!' を返す", () => {
-    expect(greet('Sora')).toBe('Hello, Sora!')
+  it('名前を埋め込んだあいさつを返す', () => {
+    expect(greet('Claude')).toBe('Hello, Claude!')
   })
 
-  it("greet('') は 'Hello, !' を返す（空文字の境界ケース）", () => {
-    expect(greet('')).toBe('Hello, !')
+  it('日本語の名前も扱える', () => {
+    expect(greet('世界')).toBe('Hello, 世界!')
   })
 })
